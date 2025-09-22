@@ -21,7 +21,7 @@ st.set_page_config(
 )
 
 # .env 파일에서 KAKAO_API_KEY 값을 찾아 가져옵니다.
-KAKAO_MAP_API_KEY = os.getenv("KAKAO_API_KEY")
+KAKAO_MAP_API_KEY = st.secrets["KAKAO_API_KEY"]
 
 # API 키가 제대로 로드되었는지 앱 시작 시점에 확인
 if not KAKAO_MAP_API_KEY:
@@ -440,3 +440,4 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
