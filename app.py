@@ -355,6 +355,7 @@ if st.button("주변 피부과 검색하기 🔍"):
             lat, lng = get_coords_by_keyword(location_query)
 
             if lat is None or lng is None:
+                st.write(KAKAO_MAP_API_KEY)
                 st.error(f"'{location_query}'의 위치를 찾을 수 없습니다. 더 구체적인 장소나 주소를 입력해보세요.")
             else:
                 acne_clinics = find_nearby_clinics_kakao(keyword="여드름 전문 피부과", lat=lat, lng=lng)
@@ -437,6 +438,7 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
 
 
 
