@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit_folium import st_folium
 import folium
 import os
-from dotenv import load_dotenv
 from ultralytics import YOLO
 from PIL import Image
 import numpy as np
@@ -10,8 +9,6 @@ import cv2
 import pandas as pd
 import requests
 
-# .env 파일에서 환경 변수 로드
-load_dotenv()
 
 # --- 페이지 설정 ---
 st.set_page_config(
@@ -440,5 +437,6 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
 
 
