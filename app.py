@@ -228,12 +228,12 @@ def get_coords_by_keyword(place_name):
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     params = {"query": place_name, "size": 1} # 가장 정확도가 높은 1개의 결과만 요청
     headers = {"Authorization": f"KakaoAK {KAKAO_MAP_API_KEY}"}
-    
+    st.write(place_name)
     try:
         response = requests.get(url, params=params, headers=headers)
         response.raise_for_status()
         result = response.json()
-        
+        st.write(result['documents'])
         if result['documents']:
             first_result = result['documents'][0]
             return first_result['y'], first_result['x'] # 위도(lat), 경도(lng)
@@ -437,6 +437,7 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
 
 
 
