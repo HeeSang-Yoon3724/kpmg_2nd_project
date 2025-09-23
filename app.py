@@ -225,6 +225,28 @@ def get_coords_by_keyword(place_name):
     카카오맵 '키워드' 검색 API를 사용해 장소명의 대표 좌표를 가져옵니다.
     (주소 검색 API보다 안정적)
     """
+    st.write("REST KEY 존재 여부:", bool(KAKAO_MAP_API_KEY))
+    
+    url = "https://dapi.kakao.com/v2/local/search/address.json"
+    headers = {"Authorization": f"KakaoAK {KAKAO_MAP_API_KEY}"}
+    params = {"query": "서울특별시청"}  # 테스트용
+
+    try:
+        r = requests.get(url, headers=headers, params=params, timeout=15)
+        st.write("status_code:", r.status_code)
+        st.code(r.text, language="json")  # 실패 원인 확인
+        if r.ok:
+            st.success("REST 호출 성공 ")
+        else:
+            st.error("REST 호출 실패  (위 메시지 확인)")
+    except Exception as e:
+        st.exception(e)
+
+
+
+
+    
+    '''
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     params = {"query": place_name, "size": 1} # 가장 정확도가 높은 1개의 결과만 요청
     headers = {"Authorization": f"KakaoAK {KAKAO_MAP_API_KEY}"}
@@ -241,7 +263,7 @@ def get_coords_by_keyword(place_name):
             return None, None
     except Exception as e:
         # 502 오류 등이 발생하면 st.error 대신 None을 반환하여 다음 단계에서 처리
-        return None, None
+        return None, None'''
 
 def find_nearby_clinics_kakao(keyword="피부과", lat="37.5665", lng="126.9780"):
     """
@@ -437,6 +459,7 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
 
 
 
