@@ -220,7 +220,7 @@ def analyze_and_display_results(image):
             st.success("✨ 이미지에서 특별한 피부 트러블이 감지되지 않았습니다.")
 
 # --- 카카오맵 API 키 (반드시 본인의 키로 교체) ---
-KAKAO_MAP_API_KEY = os.getenv("KAKAO_API_KEY")
+KAKAO_MAP_API_KEY = st.secrets["KAKAO_API_KEY"]
 
 # --- 주소를 좌표로 변환하는 함수 ---
 def get_coords_by_keyword(place_name):
@@ -440,4 +440,5 @@ if 'clinic_list' in st.session_state:
         hide_index=True
 
     )
+
 
